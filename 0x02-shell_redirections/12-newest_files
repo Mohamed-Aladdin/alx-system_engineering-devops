@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lth | head -n 11 | tail -n 10 | awk '{print $9}'
+ls -1t | head -10
