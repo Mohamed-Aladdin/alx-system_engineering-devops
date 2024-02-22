@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Bash script that displays the time for 12 hours and 59 minutes:
+
+file="apache-access.log"
+awk -F' ' '{ print $1, $9}' $file
