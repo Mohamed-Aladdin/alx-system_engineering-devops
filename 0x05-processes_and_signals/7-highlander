@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# A script that displays Best School 10 times using a for loop.
+# shellcheck disable=SC2009
+
+trap 'echo "I am invincible!!!"' SIGTERM
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
