@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A bash script.
+
+netstat -lp
