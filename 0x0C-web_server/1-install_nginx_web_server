@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 # Write a Bash script that uses ssh
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo apt-get update -y -qq && \
+	 sudo apt-get install nginx -y
+
+sudo service nginx start
+
+sudo ufw allow 'Nginx HTTP'
+
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www
-sudo service nginx start
+
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+
+sudo service nginx restart
