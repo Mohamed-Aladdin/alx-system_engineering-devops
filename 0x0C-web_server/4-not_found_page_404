@@ -4,11 +4,12 @@
 apt-get -y update
 apt-get -y install nginx
 
-echo "Hello World!" > /var/www/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
-sed -i "/listen 80 default_server;/a error_page 404 /404.html;" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-ufw allow 'Nginx HTTP'
-service nginx restart
+sudo service nginx restart
