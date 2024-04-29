@@ -2,7 +2,7 @@
 # Write a Bash script that uses ssh
 
 sudo apt-get -y update
-apt-get -y install haproxy
+sudo apt-get -y install haproxy
 
 server_config=\
 "

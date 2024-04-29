@@ -14,7 +14,10 @@ echo 'Hello World!' |sudo tee  /var/www/html/index.html
 
 echo "Ceci n'est pas une page" |sudo tee /var/www/html/404.html
 
-sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
-sed -i "/listen 80 default_server;/a error_page 404 /404.html;" /etc/nginx/sites-available/default
-sed -i '14a \\tadd_header X-Served-By '"${HOSTNAME}"';' /etc/nginx/nginx.conf
+line="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me https:\/\/www.blog.ehoneahobed.com permanent;"
+sudo sed -i "s/server_name _;/$line/" /etc/nginx/sites-enabled/default
+
+line="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$line/" /etc/nginx/sites-enabled/default
+
 sudo service nginx restart
