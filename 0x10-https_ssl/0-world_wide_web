@@ -5,4 +5,4 @@ if [ $# -eq 1 ]; then
 else
 	domains="$2.$1"
 fi
-dig "$domains" | awk '/ANSWER SECTION:/ { getline; split($1, a, "."); print "The subdomain", a[1], "is a", $4, "record and points to", $5}'
+dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, "."); print "The subdomain", a[1], "is a", $4, "record and points to", $5}'
