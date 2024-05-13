@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Write a Bash script that uses ssh
+sudo -u "$1" whoami
+
