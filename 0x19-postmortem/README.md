@@ -8,7 +8,7 @@ Duration: The outage lasted from 10:15 AM to 12:45 PM (EST) on May 30, 2024.
 Impact: During this period, our primary web service was completely unavailable. Users experienced 503 Service Unavailable errors, and approximately 80% of our user base was affected.
 Root Cause: The root cause was a misconfigured load balancer that failed to distribute traffic correctly, causing server overloads.
 
-#Timeline:
+# Timeline:
 
 -	10:15 AM: Issue detected via monitoring alerts indicating high server error rates.
 -	10:17 AM: Operations team received multiple customer complaints about service unavailability.
